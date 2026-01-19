@@ -5,7 +5,8 @@ public class Theatre {
         // Создание актёров
         Actor actor1 = new Actor("Иван", "Иванов", Gender.MALE, 180.0);
         Actor actor2 = new Actor("Кристина", "Петрова", Gender.FEMALE, 170.0);
-        Actor actor3 = new Actor("Евгений", "Сидоров", Gender.MALE, 175.0);
+        Actor actor3 = new Actor("Александра", "Петрова", Gender.FEMALE, 173.0);
+        Actor actor4 = new Actor("Евгений", "Сидоров", Gender.MALE, 175.0);
 
         // Создание режиссёра
         Director director1 = new Director("Анна", "Кузнецова", Gender.FEMALE, 15);
@@ -27,11 +28,17 @@ public class Theatre {
         operaShow.addActor(actor3);
         balletShow.addActor(actor2);
         balletShow.addActor(actor3);
+        balletShow.addActor(actor4);
+
 
         // Вывод списка актёров для каждого спектакля
         regularShow.printActors();
         operaShow.printActors();
         balletShow.printActors();
+
+        regularShow.printDirectorInfo();
+        operaShow.printDirectorInfo();
+        balletShow.printDirectorInfo();
 
         // Замена актёра в опере
         Actor newActor = new Actor("Елена", "Соколова", Gender.FEMALE, 168.0);
@@ -40,6 +47,11 @@ public class Theatre {
 
         // Попытка заменить несуществующего актёра в балете
         balletShow.replaceActor(newActor, "Иванов");
+
+        // Попытка заменить однофамильца в балете
+        Actor newActor2 = new Actor("Екатерина", "Петрова", Gender.FEMALE, 168.0);
+        balletShow.replaceActor(newActor2, "Петрова");
+
 
         // Выводим текст либретто для оперы и балета
         operaShow.printLibretto();

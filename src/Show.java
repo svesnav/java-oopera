@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Show {
-    private String title;
-    private int duration;
-    private Director director;
-    private List<Actor> listOfActors;
+    protected String title;
+    protected int duration;
+    protected Director director;
+    protected List<Actor> listOfActors;
 
     public Show(String title, int duration, Director director) {
         this.title = title;
@@ -32,14 +32,34 @@ public class Show {
     }
 
     public void replaceActor(Actor newActor, String surname) {
+        int actorIndex = 0;
+        int matches = 0;
         for (int i = 0; i < listOfActors.size(); i++) {
             if (listOfActors.get(i).surname.equals(surname)) {
-                listOfActors.set(i, newActor);
-                System.out.println("Актёр с фамилией " + surname + " заменён на " + newActor + ".");
-                return;
+                actorIndex = i;
+                matches++;
             }
         }
-        System.out.println("Актёр с фамилией " + surname + " не найден в спектакле '" + title + "'.");
+        if (matches == 0) {
+            System.out.println("Актёр с фамилией " + surname +
+                    " не найден в спектакле '" + title + "'.");
+            return;
+        }
+
+        if (matches > 1) {
+            System.out.println("Найдено несколько актёров с фамилией " + surname +
+                    " в спектакле '" + title + "'. Замена невозможна.");
+            return;
+        }
+
+        listOfActors.set(actorIndex, newActor);
+        System.out.println("Актёр с фамилией " + surname +
+                " заменён на " + newActor + ".");
+    }
+
+    public void printDirectorInfo() {
+        System.out.println("Информация о режиссёре спектакля '" + title + "':");
+        System.out.println(director);
     }
 
 }
